@@ -18,7 +18,7 @@ After
 [assembly: AssemblyFileVersion("4.6.1.32096")]
 ```
 **note that the third part of the version was changed from 0 to 1**
-## Update the full version number:
+## Update the full version number
 Before:
 ```cs
 [assembly: AssemblyVersion("4.6.0.32096")]
@@ -34,7 +34,7 @@ After
 [assembly: AssemblyFileVersion("1.2.3.4")]
 ```
 
-## Command line arguments:
+## Command line arguments
 You can provide this utility with two command line arguments:
 1) Path - the path of the folder to search in - by default the current directory is used.
 2) Version - the version to set in the `assemblyinfo.cs` - if no version is specified it'll increment the build number.
@@ -43,7 +43,7 @@ For example:
 
 `c:\>VersionUpdate.exe path=d:\northwind\dotnet version=4.6.1.32099`
 
-## What is it good for
+## What is it good for?
 It helps align the source code and the built dlls and exe files.
 When you build your code, this version is embedded to the file, and can be viewed in its `properties` tab.
 We recommend that before you run `buildRelease.bat` you'll use this utility to update the version for your source code, and commit to the version control tool.
