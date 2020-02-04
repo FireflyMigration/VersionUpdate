@@ -2,7 +2,8 @@
 
 This utility updates all your `AssemblyInfo.cs` files.
 
-You can use it to automatically increment the build number(the third part of the version number)
+You can use it to automatically increment the build number (the third part of the version number)
+
 Before:
 ```cs
 [assembly: AssemblyVersion("4.6.0.32096")]
