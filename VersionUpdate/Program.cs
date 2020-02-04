@@ -22,22 +22,41 @@ namespace VersionUpdate
                 path = Environment.CurrentDirectory;
 
 
-
-            string[] filePaths = Directory.GetFiles(path, "AssemblyInfo.cs",
-                                         SearchOption.AllDirectories);
-            var CurrentVersion = GetVersion(filePaths[0]);
-            var CurrentRevision = CurrentVersion.Split('.')[2];
-            var AutoRevision = (int.Parse(CurrentRevision)+1).ToString();
-
-            if (version != "")
-                newVersion = version;
-            else
-                newVersion = BuildVersion(AutoRevision, CurrentVersion);
-
-            for (int i = 0; i < filePaths.Length; i++)
+            try
             {
-                SetVersion(newVersion, filePaths[i]);
+                string[] filePaths = Directory.GetFiles(path, "AssemblyInfo.cs",
+                                         SearchOption.AllDirectories);
+
+
+
+                var CurrentVersion = GetVersion(filePaths[0]);
+                var CurrentBuild = CurrentVersion.Split('.')[2];
+                var AutoBuildNumber = (int.Parse(CurrentBuild) + 1).ToString();
+
+                if (version != "")
+                {
+                    newVersion = version;
+                    Console.WriteLine("Version was updated from " + CurrentVersion + " ==> " + version);
+                }
+                else
+                {
+                    newVersion = BuildVersion(AutoBuildNumber, CurrentVersion);
+                    Console.WriteLine("Build number was updated from " + CurrentBuild + " ==> " + AutoBuildNumber + " ==> " + newVersion);
+
+                }
+
+                for (int i = 0; i < filePaths.Length; i++)
+                {
+                    SetVersion(newVersion, filePaths[i]);
+                }
             }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+
+            Console.ReadLine();
         }
 
         static string BuildVersion(string version, string Currentversion)
