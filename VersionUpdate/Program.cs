@@ -49,10 +49,14 @@ namespace VersionUpdate
                 {
                     SetVersion(newVersion, filePaths[i]);
                 }
+
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                if (e.Message == "Index was outside the bounds of the array.")
+                    Console.WriteLine("Could not find any 'AssemblyInfo.cs' files - please check VersionUpdate.exe location ");
+                else
+                    Console.WriteLine(e.Message);
             }
         }
 
