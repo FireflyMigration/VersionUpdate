@@ -10,6 +10,7 @@ namespace VersionUpdate
             var newVersion = "";
             var path = "";
             var version = "";
+            bool exit = false;
 
             for (int i = 0; i < args.Length; i++)
             {
@@ -17,6 +18,8 @@ namespace VersionUpdate
                     path = args[i].Split('=')[1];
                 if (args[i].Contains("version"))
                     version = args[i].Split('=')[1];
+                if (args[i].Contains("exit"))
+                    exit = args[i].Split('=')[1].ToUpper()=="Y";
             }
             if (path == "")
                 path = Environment.CurrentDirectory;
@@ -56,7 +59,10 @@ namespace VersionUpdate
                 Console.WriteLine(e.Message);
             }
 
+            if(exit)
+                Environment.Exit(0);
             Console.ReadLine();
+            
         }
 
         static string BuildVersion(string version, string Currentversion)
